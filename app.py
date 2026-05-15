@@ -86,3 +86,22 @@ def decimal_to_base_steps(number: int, base: int):
         converted = "-" + converted
     steps.append(f"Baca sisa dari bawah ke atas: {converted}")
     return steps
+
+def base_to_decimal_expression(value: str, from_base: int):
+    value = value.strip().upper()
+    sign = -1 if value.startswith("-") else 1
+    if value.startswith("-"):
+        value = value[1:]
+    digits = "0123456789ABCDEF"
+    total = 0
+    parts = []
+    for idx, ch in enumerate(reversed(value)):
+        if ch not in digits[:from_base]:
+            raise ValueError(f"Karakter '{ch}' tidak valid untuk basis {from_base}.")
+        d = digits.index(ch)
+        power = idx
+        term = d * (from_base ** power)
+        parts.append(f"{d}×{from_base}^{power}={term}")
+        total += term
+    total *= sign
+    return total, " + ".join(reversed(parts))
