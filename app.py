@@ -346,3 +346,14 @@ def fibonacci(n: int):
         f"Hasil deret {n} suku: {', '.join(map(str, seq))}.",
     ]
     return seq, formula, steps
+
+@app.route("/")
+def index():
+    ensure_history()
+    return render_template(
+        "index.html",
+        history=session["history"],
+        currency_rates=CURRENCY_RATES_IDR,
+        bases=BASES,
+        temp_units=TEMP_UNITS,
+    )
