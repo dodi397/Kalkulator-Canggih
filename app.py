@@ -105,3 +105,27 @@ def base_to_decimal_expression(value: str, from_base: int):
         total += term
     total *= sign
     return total, " + ".join(reversed(parts))
+
+def convert_base(value: str, from_name: str, to_name: str):
+    if from_name not in BASES or to_name not in BASES:
+        raise ValueError("Basis tidak valid.")
+    from_base = BASES[from_name]
+    to_base = BASES[to_name]
+    decimal_value, expansion = base_to_decimal_expression(value, from_base)
+
+    steps = [
+        f"Nilai awal: {value} pada basis {from_base}.",
+        f"Uraikan ke desimal: {expansion}.",
+        f"Hasil ke desimal: {decimal_value}.",
+    ]
+
+    if to_base == 10:
+        converted = str(decimal_value)
+        steps.append("Karena basis tujuan desimal, hasil akhir sama dengan nilai desimal.")
+    else:
+        base_steps = decimal_to_base_steps(decimal_value, to_base)
+        converted = base_steps[-1].split(": ", 1)[-1]
+        steps.extend([f"Konversi desimal ke basis {to_base}:"] + base_steps[:-1] + [base_steps[-1]])
+
+    formula = f"{value}_{from_base} = {converted}_{to_base}"
+    return converted, formula, steps
