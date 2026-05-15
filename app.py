@@ -451,3 +451,6 @@ def api_history_clear():
     session["history"] = []
     session.modified = True
     return jsonify({"ok": True})
+
+if __name__ == "__main__":
+    app.run(debug=True)
