@@ -250,3 +250,61 @@ def arithmetic(a: float, b: float, op: str):
     else:
         raise ValueError("Operator aritmatika tidak valid.")
     return result, formula, steps
+
+def logic(a: int, b: int | None, op: str):
+    if a not in (0, 1) or (b is not None and b not in (0, 1)):
+        raise ValueError("Input logika hanya boleh 0 atau 1.")
+
+    if op == "NOT":
+        result = 1 - a
+        formula = f"NOT {a} = {result}"
+        steps = [
+            f"NOT membalik nilai boolean.",
+            f"Karena input {a}, hasilnya menjadi {result}.",
+        ]
+    else:
+        if b is None:
+            raise ValueError("Operator ini membutuhkan dua input.")
+        if op == "AND":
+            result = a & b
+            formula = f"{a} AND {b} = {result}"
+            steps = [
+                "AND bernilai 1 hanya jika kedua input 1.",
+                f"Input: {a} dan {b}.",
+                f"Hasil akhir adalah {result}.",
+            ]
+        elif op == "OR":
+            result = a | b
+            formula = f"{a} OR {b} = {result}"
+            steps = [
+                "OR bernilai 1 jika minimal satu input 1.",
+                f"Input: {a} dan {b}.",
+                f"Hasil akhir adalah {result}.",
+            ]
+        elif op == "XOR":
+            result = a ^ b
+            formula = f"{a} XOR {b} = {result}"
+            steps = [
+                "XOR bernilai 1 jika kedua input berbeda.",
+                f"Input: {a} dan {b}.",
+                f"Hasil akhir adalah {result}.",
+            ]
+        elif op == "NAND":
+            result = 1 - (a & b)
+            formula = f"{a} NAND {b} = {result}"
+            steps = [
+                "NAND adalah kebalikan dari AND.",
+                f"AND dari {a} dan {b} dihitung lalu dibalik.",
+                f"Hasil akhir adalah {result}.",
+            ]
+        elif op == "NOR":
+            result = 1 - (a | b)
+            formula = f"{a} NOR {b} = {result}"
+            steps = [
+                "NOR adalah kebalikan dari OR.",
+                f"OR dari {a} dan {b} dihitung lalu dibalik.",
+                f"Hasil akhir adalah {result}.",
+            ]
+        else:
+            raise ValueError("Operator logika tidak valid.")
+    return result, formula, steps
