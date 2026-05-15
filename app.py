@@ -195,3 +195,58 @@ def convert_currency(amount: float, from_cur: str, to_cur: str):
         f"Ubah ke {t}: {idr_value:,.2f} ÷ {CURRENCY_RATES_IDR[t]:,.2f} = {result:.6f} {t}".replace(",", "."),
     ]
     return result, formula, steps
+
+def arithmetic(a: float, b: float, op: str):
+    if op == "+":
+        result = a + b
+        formula = f"{a} + {b} = {result}"
+        steps = [f"Jumlahkan {format_number(a)} dengan {format_number(b)}.", f"Hasil akhir adalah {format_number(result)}."]
+    elif op == "-":
+        result = a - b
+        formula = f"{a} - {b} = {result}"
+        steps = [f"Kurangi {format_number(b)} dari {format_number(a)}.", f"Hasil akhir adalah {format_number(result)}."]
+    elif op == "*":
+        result = a * b
+        formula = f"{a} × {b} = {result}"
+        steps = [f"Kalikan {format_number(a)} dengan {format_number(b)}.", f"Hasil akhir adalah {format_number(result)}."]
+    elif op == "/":
+        if b == 0:
+            raise ZeroDivisionError("Pembagian dengan nol tidak diperbolehkan.")
+        result = a / b
+        formula = f"{a} ÷ {b} = {result}"
+        steps = [f"Bagi {format_number(a)} dengan {format_number(b)}.", f"Hasil akhir adalah {format_number(result)}."]
+    elif op == "^":
+        result = a ** b
+        formula = f"{a}^{b} = {result}"
+        steps = [f"Pangkatkan {format_number(a)} dengan {format_number(b)}.", f"Hasil akhir adalah {format_number(result)}."]
+    elif op == "%":
+        if b == 0:
+            raise ZeroDivisionError("Modulus dengan nol tidak diperbolehkan.")
+        result = a % b
+        formula = f"{a} % {b} = {result}"
+        steps = [
+            f"Ambil sisa pembagian {format_number(a)} oleh {format_number(b)}.",
+            f"Hasil akhir adalah {format_number(result)}.",
+        ]
+    elif op == "//":
+        if b == 0:
+            raise ZeroDivisionError("Floor division dengan nol tidak diperbolehkan.")
+        result = a // b
+        formula = f"{a} // {b} = {result}"
+        steps = [
+            f"Ambil hasil pembagian bulat dari {format_number(a)} oleh {format_number(b)}.",
+            f"Hasil akhir adalah {format_number(result)}.",
+        ]
+    elif op == "sqrt":
+        if b == 0:
+            raise ZeroDivisionError("Derajat akar tidak boleh nol.")
+        result = a ** (1 / b)
+        formula = f"akar_{b}({a}) = {result}"
+        steps = [
+            f"Hitung akar pangkat {format_number(b)} dari {format_number(a)}.",
+            f"Gunakan bentuk {format_number(a)}^(1/{format_number(b)}).",
+            f"Hasil akhir adalah {format_number(result)}.",
+        ]
+    else:
+        raise ValueError("Operator aritmatika tidak valid.")
+    return result, formula, steps
