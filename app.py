@@ -68,3 +68,21 @@ def build_history_item(module, title, formula, result_display):
         "formula": formula,
         "result": result_display,
     }
+
+def decimal_to_base_steps(number: int, base: int):
+    if number == 0:
+        return ["0 dibagi apa pun tetap 0."]
+    steps = []
+    n = abs(number)
+    digits = "0123456789ABCDEF"
+    remainders = []
+    while n > 0:
+        q, r = divmod(n, base)
+        steps.append(f"{n} ÷ {base} = {q} sisa {digits[r]}")
+        remainders.append(digits[r])
+        n = q
+    converted = "".join(reversed(remainders))
+    if number < 0:
+        converted = "-" + converted
+    steps.append(f"Baca sisa dari bawah ke atas: {converted}")
+    return steps
