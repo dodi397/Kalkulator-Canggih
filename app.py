@@ -58,3 +58,13 @@ def format_number(n):
         s = f"{n:.10f}".rstrip("0").rstrip(".")
         return s.replace(".", ",") if "," not in s else s
     return str(n)
+
+def build_history_item(module, title, formula, result_display):
+    return {
+        "id": str(uuid.uuid4()),
+        "time": now_str(),
+        "module": module,
+        "title": title,
+        "formula": formula,
+        "result": result_display,
+    }
