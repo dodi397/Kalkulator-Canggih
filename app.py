@@ -357,3 +357,86 @@ def index():
         bases=BASES,
         temp_units=TEMP_UNITS,
     )
+
+@app.route("/api/calculate", methods=["POST"])
+def api_calculate():
+    data = request.get_json(force=True)
+    calc_type = data.get("type")
+    try:
+        if calc_type == "arithmetic":
+            a = float(data.get("a", 0))
+            b = float(data.get("b", 0))
+            op = data.get("op", "+")
+            result, formula, steps = arithmetic(a, b, op)
+            result_display = format_number(result)
+            title = f"Aritmatika {op}"
+            module = "Aritmatika"
+
+        elif calc_type == "logic":
+            a = int(data.get("a", 0))
+            b = data.get("b")
+            b = int(b) if b is not None and b != "" else None
+            op = data.get("op", "AND")
+            result, formula, steps = logic(a, b, op)
+            result_display = str(int(result))
+            title = f"Logika {op}"
+            module = "Logika"
+
+        elif calc_type == "base":
+            value = str(data.get("value", "")).strip()
+            from_base = data.get("from_base", "decimal")
+            to_base = data.get("to_base", "binary")
+            result, formula, steps = convert_base(value, from_base, to_base)
+            result_display = result
+            title = f"Konversi Basis {from_base}→{to_base}"
+            module = "Transformasi Bilangan"
+
+        elif calc_type == "temperature":
+            value = float(data.get("value", 0))
+            from_unit = data.get("from_unit", "C")
+            to_unit = data.get("to_unit", "F")
+            result, formula, steps = convert_temperature(value, from_unit, to_unit)
+            result_display = f"{result:.6f}".rstrip("0").rstrip(".")
+            title = f"Suhu {from_unit}→{to_unit}"
+            module = "Transformasi Bilangan"
+
+        elif calc_type == "currency":
+            amount = float(data.get("amount", 0))
+            from_cur = data.get("from_cur", "IDR")
+            to_cur = data.get("to_cur", "USD")
+            result, formula, steps = convert_currency(amount, from_cur, to_cur)
+            result_display = f"{result:.6f} {to_cur}".rstrip("0").rstrip(".")
+            title = f"Mata Uang {from_cur}→{to_cur}"
+            module = "Transformasi Bilangan"
+
+        elif calc_type == "factorial":
+            n = int(data.get("n", 0))
+            result, formula, steps = factorial(n)
+            result_display = str(result)
+            title = "Faktorial"
+            module = "Bonus"
+
+        elif calc_type == "fibonacci":
+            n = int(data.get("n", 0))
+            seq, formula, steps = fibonacci(n)
+            result_display = ", ".join(map(str, seq))
+            result = seq
+            title = "Fibonacci"
+            module = "Bonus"
+
+        else:
+            return jsonify({"ok": False, "message": "Tipe kalkulasi tidak dikenal."}), 400
+
+        history_item = build_history_item(module, title, formula, result_display)
+        push_history(history_item)
+        return jsonify({
+            "ok": True,
+            "result": result_display,
+            "formula": formula,
+            "steps": steps,
+            "history_item": history_item,
+            "message": "Perhitungan berhasil.",
+        })
+
+    except Exception as e:
+        return jsonify({"ok": False, "message": str(e)}), 400
