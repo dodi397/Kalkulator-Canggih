@@ -308,3 +308,41 @@ def logic(a: int, b: int | None, op: str):
         else:
             raise ValueError("Operator logika tidak valid.")
     return result, formula, steps
+
+def factorial(n: int):
+    if n < 0:
+        raise ValueError("Faktorial tidak dapat dihitung untuk bilangan negatif.")
+    if n > 200:
+        raise ValueError("Angka terlalu besar untuk ditampilkan secara detail.")
+    if n == 0 or n == 1:
+        formula = f"{n}! = 1"
+        steps = [f"Karena {n}! bernilai 1, hasilnya adalah 1."]
+        return 1, formula, steps
+    expression = " × ".join(str(i) for i in range(n, 0, -1))
+    result = math.factorial(n)
+    formula = f"{n}! = {expression} = {result}"
+    steps = [
+        f"Mulai dari {n}.",
+        f"Kalikan berurutan hingga 1: {expression}.",
+        f"Hasil akhir adalah {result}.",
+    ]
+    return result, formula, steps
+
+
+def fibonacci(n: int):
+    if n < 1:
+        raise ValueError("Jumlah suku Fibonacci minimal 1.")
+    if n > 1000:
+        raise ValueError("Jumlah suku terlalu besar.")
+    seq = []
+    a, b = 0, 1
+    for _ in range(n):
+        seq.append(a)
+        a, b = b, a + b
+    formula = "F(0)=0, F(1)=1, F(n)=F(n-1)+F(n-2)"
+    steps = [
+        "Bangun deret mulai dari 0 dan 1.",
+        "Setiap suku berikutnya adalah jumlah dua suku sebelumnya.",
+        f"Hasil deret {n} suku: {', '.join(map(str, seq))}.",
+    ]
+    return seq, formula, steps
