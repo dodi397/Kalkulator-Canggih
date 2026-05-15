@@ -38,3 +38,23 @@ def now_str() -> str:
 def ensure_history():
     if "history" not in session:
         session["history"] = []
+
+def push_history(item: dict):
+    ensure_history()
+    history = session["history"]
+    history.insert(0, item)
+    session["history"] = history[:MAX_HISTORY]
+    session.modified = True
+
+
+def format_number(n):
+    if isinstance(n, bool):
+        return "1" if n else "0"
+    if isinstance(n, int):
+        return f"{n:,}".replace(",", ".")
+    if isinstance(n, float):
+        if abs(n - round(n)) < 1e-12:
+            return f"{int(round(n)):,}".replace(",", ".")
+        s = f"{n:.10f}".rstrip("0").rstrip(".")
+        return s.replace(".", ",") if "," not in s else s
+    return str(n)
