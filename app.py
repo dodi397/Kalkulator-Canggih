@@ -30,3 +30,11 @@ BASES = {
 }
 
 TEMP_UNITS = ("C", "F", "K", "R")
+
+def now_str() -> str:
+    return datetime.now().strftime("%d-%m-%Y %H:%M:%S")
+
+
+def ensure_history():
+    if "history" not in session:
+        session["history"] = []
