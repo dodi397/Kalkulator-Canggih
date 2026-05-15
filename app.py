@@ -129,3 +129,54 @@ def convert_base(value: str, from_name: str, to_name: str):
 
     formula = f"{value}_{from_base} = {converted}_{to_base}"
     return converted, formula, steps
+
+def convert_temperature(value: float, from_unit: str, to_unit: str):
+    f = from_unit.upper()
+    t = to_unit.upper()
+    if f not in TEMP_UNITS or t not in TEMP_UNITS:
+        raise ValueError("Satuan suhu tidak valid.")
+
+    def to_celsius(v, unit):
+        if unit == "C":
+            return v, f"{v}°C langsung ke Celsius."
+        if unit == "F":
+            return (v - 32) * 5 / 9, f"({v} - 32) × 5/9"
+        if unit == "K":
+            return v - 273.15, f"{v} - 273.15"
+        if unit == "R":
+            return v * 5 / 4, f"{v} × 5/4"
+
+    def from_celsius(c, unit):
+        if unit == "C":
+            return c, f"{c}°C"
+        if unit == "F":
+            return c * 9 / 5 + 32, f"({c} × 9/5) + 32"
+        if unit == "K":
+            return c + 273.15, f"{c} + 273.15"
+        if unit == "R":
+            return c * 4 / 5, f"{c} × 4/5"
+
+    celsius, step1 = to_celsius(value, f)
+    result, step2 = from_celsius(celsius, t)
+
+    formula_map = {
+        ("C", "F"): "F = (C × 9/5) + 32",
+        ("C", "K"): "K = C + 273.15",
+        ("C", "R"): "R = C × 4/5",
+        ("F", "C"): "C = (F - 32) × 5/9",
+        ("F", "K"): "K = (F - 32) × 5/9 + 273.15",
+        ("F", "R"): "R = (F - 32) × 4/9",
+        ("K", "C"): "C = K - 273.15",
+        ("K", "F"): "F = (K - 273.15) × 9/5 + 32",
+        ("K", "R"): "R = (K - 273.15) × 4/5",
+        ("R", "C"): "C = R × 5/4",
+        ("R", "F"): "F = (R × 9/4) + 32",
+        ("R", "K"): "K = (R × 5/4) + 273.15",
+    }
+    formula = formula_map.get((f, t), f"Konversi dari {f} ke {t}")
+    steps = [
+        f"Nilai awal: {value}°{f}.",
+        f"Langkah 1 ke Celsius: {step1}.",
+        f"Langkah 2 ke tujuan: {step2}.",
+    ]
+    return result, formula, steps
