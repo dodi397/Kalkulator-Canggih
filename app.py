@@ -440,3 +440,14 @@ def api_calculate():
 
     except Exception as e:
         return jsonify({"ok": False, "message": str(e)}), 400
+
+@app.route("/api/history", methods=["GET"])
+def api_history():
+    ensure_history()
+    return jsonify({"ok": True, "history": session["history"]})
+
+@app.route("/api/history/clear", methods=["POST"])
+def api_history_clear():
+    session["history"] = []
+    session.modified = True
+    return jsonify({"ok": True})
