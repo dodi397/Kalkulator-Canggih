@@ -180,3 +180,18 @@ def convert_temperature(value: float, from_unit: str, to_unit: str):
         f"Langkah 2 ke tujuan: {step2}.",
     ]
     return result, formula, steps
+
+def convert_currency(amount: float, from_cur: str, to_cur: str):
+    f = from_cur.upper()
+    t = to_cur.upper()
+    if f not in CURRENCY_RATES_IDR or t not in CURRENCY_RATES_IDR:
+        raise ValueError("Mata uang tidak didukung.")
+    idr_value = amount * CURRENCY_RATES_IDR[f]
+    result = idr_value / CURRENCY_RATES_IDR[t]
+    formula = f"{amount} {f} × rate_{f} ÷ rate_{t} = {result:.6f} {t}"
+    steps = [
+        f"Rate statis: 1 {f} = {CURRENCY_RATES_IDR[f]:,.2f} IDR.".replace(",", "."),
+        f"Ubah ke IDR: {amount} × {CURRENCY_RATES_IDR[f]:,.2f} = {idr_value:,.2f} IDR.".replace(",", "."),
+        f"Ubah ke {t}: {idr_value:,.2f} ÷ {CURRENCY_RATES_IDR[t]:,.2f} = {result:.6f} {t}".replace(",", "."),
+    ]
+    return result, formula, steps
