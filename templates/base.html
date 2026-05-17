@@ -309,3 +309,30 @@
               </div>
             </div>
           </div>
+
+          <div id="tab-history" class="tab-panel">
+            <div class="panel-card">
+              <div class="panel-head d-flex justify-content-between align-items-center">
+                <div>
+                  <h2>Riwayat Perhitungan</h2>
+                  <p>Semua hasil tersimpan otomatis setelah perhitungan dilakukan.</p>
+                </div>
+                <button id="clearHistoryBtn" class="danger-btn" type="button"><i class="bi bi-trash3 me-2"></i>Hapus Riwayat</button>
+              </div>
+
+              <div id="historyList" class="history-list">
+                {% for item in history %}
+                  <div class="history-item">
+                    <div class="history-icon"><i class="bi bi-clock"></i></div>
+                    <div class="history-content">
+                      <div class="history-title">{{ item.title }}</div>
+                      <div class="history-formula">{{ item.formula }}</div>
+                      <div class="history-meta">{{ item.module }} • {{ item.time }}</div>
+                    </div>
+                    <div class="history-result">{{ item.result }}</div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
