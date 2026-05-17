@@ -75,10 +75,95 @@
       <section class="content-grid">
         <div class="work-area">
             <div id="tab-arithmetic" class="tab-panel active">
-                <div class="panel-card">
-                    <div class="panel-head">
-                        <div>
-                            <h2>Operasi Aritmatika</h2>
-                            <p>Pilih operator dan masukkan angka untuk melakukan perhitungan detail.</p>
-                        </div>
-                    </div>
+            <div class="panel-card">
+              <div class="panel-head">
+                <div>
+                  <h2>Operasi Aritmatika</h2>
+                  <p>Pilih operator dan masukkan angka untuk melakukan perhitungan detail.</p>
+                </div>
+              </div>
+
+              <div class="operator-group">
+                <button class="op-btn active" data-op="+">+</button>
+                <button class="op-btn" data-op="-">−</button>
+                <button class="op-btn" data-op="*">×</button>
+                <button class="op-btn" data-op="/">÷</button>
+                <button class="op-btn" data-op="^">^</button>
+                <button class="op-btn" data-op="sqrt">√</button>
+                <button class="op-btn" data-op="%">%</button>
+                <button class="op-btn" data-op="//">//</button>
+              </div>
+
+              <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                  <label class="form-label">Angka Pertama</label>
+                  <input id="arithA" type="number" step="any" class="form-control calc-input" value="12">
+                </div>
+                <div class="col-md-6">
+                  <label id="arithBLabel" class="form-label">Angka Kedua</label>
+                  <input id="arithB" type="number" step="any" class="form-control calc-input" value="8">
+                </div>
+              </div>
+
+              <div class="button-row mt-4">
+                <button id="calcArithmetic" class="primary-btn" type="button"><i class="bi bi-send me-2"></i>Hitung Sekarang</button>
+                <button id="resetArithmetic" class="secondary-btn" type="button"><i class="bi bi-arrow-counterclockwise me-2"></i>Reset</button>
+              </div>
+
+              <div class="hint-box mt-4">
+                <div class="hint-title">Keterangan Operator</div>
+                <div class="hint-grid">
+                  <div><strong>+</strong> Penjumlahan</div>
+                  <div><strong>-</strong> Pengurangan</div>
+                  <div><strong>×</strong> Perkalian</div>
+                  <div><strong>÷</strong> Pembagian</div>
+                  <div><strong>^</strong> Pangkat</div>
+                  <div><strong>√</strong> Akar n</div>
+                  <div><strong>%</strong> Modulus</div>
+                  <div><strong>//</strong> Floor Division</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="tab-logic" class="tab-panel">
+            <div class="panel-card">
+              <div class="panel-head">
+                <div>
+                  <h2>Operator Logika</h2>
+                  <p>Semua input logika harus berupa 0 atau 1.</p>
+                </div>
+              </div>
+
+              <div class="operator-group logic-group">
+                <button class="op-btn logic active" data-logop="AND">AND</button>
+                <button class="op-btn logic" data-logop="OR">OR</button>
+                <button class="op-btn logic" data-logop="NOT">NOT</button>
+                <button class="op-btn logic" data-logop="XOR">XOR</button>
+                <button class="op-btn logic" data-logop="NAND">NAND</button>
+                <button class="op-btn logic" data-logop="NOR">NOR</button>
+              </div>
+
+              <div class="row g-3 mt-1">
+                <div class="col-md-6">
+                  <label class="form-label">Input A</label>
+                  <select id="logicA" class="form-select calc-input">
+                    <option value="0">0</option>
+                    <option value="1" selected>1</option>
+                  </select>
+                </div>
+                <div class="col-md-6">
+                  <label id="logicBLabel" class="form-label">Input B</label>
+                  <select id="logicB" class="form-select calc-input">
+                    <option value="0" selected>0</option>
+                    <option value="1">1</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="button-row mt-4">
+                <button id="calcLogic" class="primary-btn" type="button"><i class="bi bi-shuffle me-2"></i>Hitung Logika</button>
+                <button id="resetLogic" class="secondary-btn" type="button"><i class="bi bi-arrow-counterclockwise me-2"></i>Reset</button>
+              </div>
+            </div>
+          </div>
