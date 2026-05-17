@@ -1,0 +1,16 @@
+:root {
+  --bg: #f4f7fb;
+  --surface: rgba(255,255,255,0.82);
+  --surface-solid: #ffffff;
+  --text: #101828;
+  --muted: #667085;
+  --border: rgba(16,24,40,0.09);
+  --primary: #4f46e5;
+  --primary-2: #7c3aed;
+  --accent: #22c55e;
+  --danger: #ef4444;
+  --shadow: 0 18px 40px rgba(16,24,40,0.08);
+  --sidebar: linear-gradient(180deg, #0f172a 0%, #111827 100%);
+  --sidebar-text: #e5e7eb;
+  --sidebar-muted: #94a3b8;
+}
