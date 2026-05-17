@@ -167,3 +167,115 @@
               </div>
             </div>
           </div>
+
+          <div id="tab-transform" class="tab-panel">
+            <div class="panel-card">
+              <div class="panel-head">
+                <div>
+                  <h2>Transformasi Bilangan</h2>
+                  <p>Konversi basis, suhu, dan mata uang sederhana dengan langkah detail.</p>
+                </div>
+              </div>
+
+              <ul class="nav nav-pills mb-3 transform-tabs" id="transformTabs" role="tablist">
+                <li class="nav-item" role="presentation"><button class="nav-link active" data-transform="base" type="button">Konversi Basis</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link" data-transform="temperature" type="button">Konversi Suhu</button></li>
+                <li class="nav-item" role="presentation"><button class="nav-link" data-transform="currency" type="button">Konversi Mata Uang</button></li>
+              </ul>
+
+              <div id="transform-base" class="transform-panel active">
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label class="form-label">Nilai</label>
+                    <input id="baseValue" type="text" class="form-control calc-input" value="25">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Dari Basis</label>
+                    <select id="baseFrom" class="form-select calc-input">
+                      <option value="decimal" selected>Decimal</option>
+                      <option value="binary">Binary</option>
+                      <option value="octal">Octal</option>
+                      <option value="hexadecimal">Hexadecimal</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Ke Basis</label>
+                    <select id="baseTo" class="form-select calc-input">
+                      <option value="binary" selected>Binary</option>
+                      <option value="decimal">Decimal</option>
+                      <option value="octal">Octal</option>
+                      <option value="hexadecimal">Hexadecimal</option>
+                    </select>
+                  </div>
+                </div>
+                <button class="primary-btn mt-4" id="calcBase" type="button">Konversi Basis</button>
+              </div>
+
+              <div id="transform-temperature" class="transform-panel d-none">
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label class="form-label">Nilai Suhu</label>
+                    <input id="tempValue" type="number" step="any" class="form-control calc-input" value="30">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Dari</label>
+                    <select id="tempFrom" class="form-select calc-input">
+                      <option value="C" selected>Celsius</option>
+                      <option value="F">Fahrenheit</option>
+                      <option value="K">Kelvin</option>
+                      <option value="R">Reamur</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Ke</label>
+                    <select id="tempTo" class="form-select calc-input">
+                      <option value="F" selected>Fahrenheit</option>
+                      <option value="C">Celsius</option>
+                      <option value="K">Kelvin</option>
+                      <option value="R">Reamur</option>
+                    </select>
+                  </div>
+                </div>
+                <button class="primary-btn mt-4" id="calcTemp" type="button">Konversi Suhu</button>
+              </div>
+
+              <div id="transform-currency" class="transform-panel d-none">
+                <div class="row g-3">
+                  <div class="col-md-4">
+                    <label class="form-label">Jumlah</label>
+                    <input id="currencyValue" type="number" step="any" class="form-control calc-input" value="100000">
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Dari</label>
+                    <select id="currencyFrom" class="form-select calc-input">
+                      <option value="IDR" selected>IDR</option>
+                      <option value="USD">USD</option>
+                      <option value="EUR">EUR</option>
+                      <option value="SGD">SGD</option>
+                      <option value="JPY">JPY</option>
+                      <option value="MYR">MYR</option>
+                      <option value="AUD">AUD</option>
+                      <option value="GBP">GBP</option>
+                    </select>
+                  </div>
+                  <div class="col-md-4">
+                    <label class="form-label">Ke</label>
+                    <select id="currencyTo" class="form-select calc-input">
+                      <option value="USD" selected>USD</option>
+                      <option value="IDR">IDR</option>
+                      <option value="EUR">EUR</option>
+                      <option value="SGD">SGD</option>
+                      <option value="JPY">JPY</option>
+                      <option value="MYR">MYR</option>
+                      <option value="AUD">AUD</option>
+                      <option value="GBP">GBP</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="rate-note mt-3">
+                  Kurs statis dipakai untuk simulasi dan tidak terhubung ke internet.
+                </div>
+                <button class="primary-btn mt-4" id="calcCurrency" type="button">Konversi Mata Uang</button>
+              </div>
+            </div>
+          </div>
