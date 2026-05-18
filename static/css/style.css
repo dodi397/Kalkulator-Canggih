@@ -108,3 +108,24 @@ body {
   letter-spacing: .08em;
   margin: 4px 10px;
 }
+
+.menu-item {
+  width: 100%;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--sidebar-text);
+  text-align: left;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 14px;
+  border-radius: 16px;
+  transition: .2s ease;
+}
+
+.menu-item span { font-weight: 600; font-size: .95rem; }
+.menu-item i { font-size: 1.1rem; opacity: .95; }
+.menu-item:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(255,255,255,0.08);
+}
