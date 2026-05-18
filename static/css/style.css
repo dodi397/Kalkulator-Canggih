@@ -30,3 +30,6 @@ body.theme-dark {
   --sidebar: linear-gradient(180deg, #020617 0%, #0f172a 100%);
   --sidebar-text: #f8fafc;
   --sidebar-muted: #94a3b8;
+}
+
+* { box-sizing: border-box; }
