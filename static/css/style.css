@@ -14,3 +14,19 @@
   --sidebar-text: #e5e7eb;
   --sidebar-muted: #94a3b8;
 }
+
+body.theme-dark {
+  --bg: #07111f;
+  --surface: rgba(12,18,31,0.78);
+  --surface-solid: #0f172a;
+  --text: #e5e7eb;
+  --muted: #94a3b8;
+  --border: rgba(148,163,184,0.14);
+  --primary: #8b5cf6;
+  --primary-2: #38bdf8;
+  --accent: #22c55e;
+  --danger: #f87171;
+  --shadow: 0 24px 50px rgba(0,0,0,0.35);
+  --sidebar: linear-gradient(180deg, #020617 0%, #0f172a 100%);
+  --sidebar-text: #f8fafc;
+  --sidebar-muted: #94a3b8;
