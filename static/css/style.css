@@ -72,3 +72,39 @@ body {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.08);
 }
+
+.brand-icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: linear-gradient(135deg, var(--primary), var(--primary-2));
+  font-size: 1.3rem;
+}
+
+.brand-card h1 {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 800;
+}
+
+.brand-card p {
+  margin: 2px 0 0;
+  color: var(--sidebar-muted);
+  font-size: .82rem;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.section-label {
+  color: var(--sidebar-muted);
+  font-size: .78rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  margin: 4px 10px;
+}
